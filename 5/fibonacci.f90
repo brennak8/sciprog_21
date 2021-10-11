@@ -1,37 +1,49 @@
-program fibonacci
+program test
   implicit none
-  integer (kind=4) :: n
-  integer :: i
+  integer :: n, num, num_1, num_2 
+  integer :: i, ierr = 0
 
-  print *, 'Enter an integer please.'
-  print *, 'Up to 3 digits please'
+  write (6,*) 'Type an integer please'
+  write (6,*) 'Please no more than three digits'
+  if (ierr.eq.0) then
+    read(5,*, iostat = ierr) n
+  else
+    write (6,*) 'Problem with input'
+  end if
+  print*, n
 
-  read *, n
-  print '(1x,i3)', n
+  num_1 = n-1
+  num_2 = n-2
   
-!Have user give value of n
-!Have a function that accepts two args
-  !user inputs n, makes two arguments for function, n-1 and n-2
-  !output arguments are n and n-1
 
-  !Fn = F(n-1) + F(n-2)
-  !Fn = n
-  
-  !use a loop to get the series up to n
-  !print out the series
-  
-  do i = 0,n,1
+  do i = 0, n, 1
+    if ((i.eq.0).or.(i.eq.1)) then
+      print *, i, ' = ', i 
+    else
+      print *, i, ' = ', i-1, ' + ', i-2
+     !Only print numbers that satisfy this sequence
     
+    !if number satisfies expression, then
+    !print number and expression
+    !use subroutine to loop through different numbers
+    !Look up online
+    !number in sequence is made of the numbers in sequence before it
+!      call my_sub(num_1, num_2, num, num_1)
+    end if
+  end do
 
+  !Make a function that takes num_1, num_2
+  !Function should give back num, num_1
+  !Use a subroutine for now
+    
+end program test
 
-end program fibonacci
-
-function func1(arg1, arg2)
+subroutine my_sub(arg1, arg2, res1, res2)
   implicit none
-  integer, (intent=in) :: arg1, arg2
-  integer, (intent=out) :: fn, fn-1
+  integer, intent(in) :: arg1, arg2
+  integer, intent(out) :: res1, res2
 
-  fn = arg1 + 1
-  fn-1 = arg2 + 1
+  res1 = arg1 + 1
+  res2 = arg2 + 1
 
-end function func1
+end subroutine my_sub
