@@ -38,20 +38,25 @@ real function trap(n)
 !Function uses the trapezoidal rule to calculate area under a curve
   implicit none
   real (kind=4), intent(in) :: n
+  real (kind=4) :: radang
   integer :: i
   real (kind=4) :: y
   real (kind=4) :: b = 60.
 
   do i = 0,int(n),1
   !First and last terms in expression not multiplied by two
+    call degtorad ((b/n) * i, radang)
     if ((i.eq.0) .or. (i.eq.n)) then
-      y = y + (tan(b/n * i))
+      y = y + tan(radang)
+      print*, y
     else
   !Inner terms of loop are multiplied by two
-      y = y + 2*(tan(b/n * i))
+      y = y + 2*(tan(radang))
     end if
   end do
-  
+ 
+  !call degtorad(b, radang)
+
   !Gives the absolute value of the area calculated
-  trap = abs((b - 0.)/(2.*n) * y)
+  trap = (radang - 0.)/(2.*n) * y
 end function trap
