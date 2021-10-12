@@ -1,49 +1,42 @@
-program test
+program fibonacci
   implicit none
-  integer :: n, num, num_1, num_2 
-  integer :: i, ierr = 0
+  integer :: Fn, Fn_1, Fn_2
+  integer :: F0, F1, i, n, ierr = 0
+  
+  F0 = 0
+  F1 = 1
 
-  write (6,*) 'Type an integer please'
-  write (6,*) 'Please no more than three digits'
+
+  write (6,*) 'Pick an integer please'
+  write (6,*) 'Please no more than 48, after that we get negative numbers'
   if (ierr.eq.0) then
     read(5,*, iostat = ierr) n
   else
     write (6,*) 'Problem with input'
-  end if
-  print*, n
+  end if 
 
-  num_1 = n-1
-  num_2 = n-2
-  
+  call my_sub(F1, F0, Fn, Fn_1)
+  print *, F0
+  print *, F1
+  print *, Fn
 
-  do i = 0, n, 1
-    if ((i.eq.0).or.(i.eq.1)) then
-      print *, i, ' = ', i 
-    else
-      print *, i, ' = ', i-1, ' + ', i-2
-     !Only print numbers that satisfy this sequence
-    
-    !if number satisfies expression, then
-    !print number and expression
-    !use subroutine to loop through different numbers
-    !Look up online
-    !number in sequence is made of the numbers in sequence before it
-!      call my_sub(num_1, num_2, num, num_1)
-    end if
+  !loop starts at 3 due to the fact that the subroutine was called before
+  do i = 3,n,1
+    Fn_2 = Fn_1
+    Fn_1 = Fn
+    call my_sub(Fn_1, Fn_2, Fn, Fn_1)
+    print *, Fn
   end do
 
-  !Make a function that takes num_1, num_2
-  !Function should give back num, num_1
-  !Use a subroutine for now
-    
-end program test
+end program fibonacci
 
 subroutine my_sub(arg1, arg2, res1, res2)
   implicit none
   integer, intent(in) :: arg1, arg2
   integer, intent(out) :: res1, res2
-
-  res1 = arg1 + 1
-  res2 = arg2 + 1
+  !arg1 = Fn_1, arg2 = Fn_2, res1 = Fn, res2 = Fn_1
+  
+  res1 = arg1 + arg2
+  res2 = arg1
 
 end subroutine my_sub
