@@ -28,8 +28,9 @@ program oddeven
       write (6, fmt = '(i0, a)', advance = 'no'), res, ', '
 
       !Check if length of line is nearing 40
+      !Not the most exact method to be fair
       !If it does, we print a new line and write to that
-      !Initialise the variables line and length again
+      !Initialise/reset the variables line and length again
       if (length.le.36) then
         continue
       else if (length.ge.37) then
