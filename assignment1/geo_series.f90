@@ -27,8 +27,6 @@ program geometric_series
         r = 2.0
         x(i) = S_n_form(n,a,r)
         y(i) = S_n_sum(n,a,r)
-      case default
-        print *, 'Invalid'
     end select
     print *, 'Using the formula'
     print *, x(i)
