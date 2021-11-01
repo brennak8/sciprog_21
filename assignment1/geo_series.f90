@@ -32,6 +32,7 @@ program geometric_series
     print *, x(i)
     print *, 'Using summation'
     print *, y(i)
+    print *, ''
   end do
 
 !-----------------------------!
